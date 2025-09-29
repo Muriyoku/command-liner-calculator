@@ -2,7 +2,7 @@ use std::{env, process};
 
 use command_liner_caculator::{quocient, product, difference, sum};
 
-struct Config<T> where T: Iterator<Item = i64> {
+struct Config<T> where T: Iterator<Item = f64> {
     op: String, // op = operation
     values: T, 
 }
@@ -26,13 +26,13 @@ fn main() {
 
 }
 
-fn set_config<T>(mut args: T) -> Config<impl Iterator<Item = i64>> 
+fn set_config<T>(mut args: T) -> Config<impl Iterator<Item = f64>> 
 where T: Iterator<Item = String> {
     args.next();
     
     let op: String = args.next().unwrap().to_lowercase();
     let values = args.map(|n: String| {
-        let inter: Result<i64, std::num::ParseIntError> = n.parse::<i64>();
+        let inter: Result<f64, std::num::ParseFloatError> = n.parse::<f64>();
 
         match inter {
             Ok(i) => i,
