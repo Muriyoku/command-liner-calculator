@@ -1,4 +1,4 @@
-use std::{env, process};
+use std::{env::{self, Args}, process};
 
 use command_liner_caculator::{quocient, product, difference, sum};
 
@@ -26,8 +26,7 @@ fn main() {
 
 }
 
-fn set_config<T>(mut args: T) -> Config<impl Iterator<Item = f64>> 
-where T: Iterator<Item = String> {
+fn set_config(mut args: Args) -> Config<impl Iterator<Item = f64>> {
     args.next();
     
     let op: String = args.next().unwrap().to_lowercase();
