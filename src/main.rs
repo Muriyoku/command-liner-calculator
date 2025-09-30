@@ -1,6 +1,6 @@
 use std::{env::{self, Args}, process};
 
-use command_liner_caculator::{quocient, product, difference, sum};
+use command_line_calculator::{quocient, product, difference, sum};
 
 struct Config<T> where T: Iterator<Item = f64> {
     op: String, // op = operation

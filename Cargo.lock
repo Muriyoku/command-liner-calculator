@@ -3,5 +3,5 @@
 version = 4
 
 [[package]]
-name = "command-liner-caculator"
+name = "command-line-calculator"
 version = "0.1.0"
