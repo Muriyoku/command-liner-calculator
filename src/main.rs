@@ -29,7 +29,14 @@ struct Config<T> where T: Iterator<Item = f64> {
 fn set_config(mut args: Args) -> Config<impl Iterator<Item = f64>> {
     args.next();
     
-    let op: String = args.next().unwrap().to_lowercase();
+    let op: String = match args.next() {
+        Some(op) => op.to_lowercase(),
+        None => {
+            eprintln!("Please, specify a match operation");
+            process::exit(1);
+        }
+    };
+
     let values = args.map(|n: String| {
         let inter: Result<f64, std::num::ParseFloatError> = n.parse::<f64>();
 
