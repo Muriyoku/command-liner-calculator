@@ -2,11 +2,6 @@ use std::{env::{self, Args}, process};
 
 use command_line_calculator::{quocient, product, difference, sum};
 
-struct Config<T> where T: Iterator<Item = f64> {
-    op: String, // op = operation
-    values: T, 
-}
-
 fn main() {
     let args = env::args().into_iter();
     let config= set_config(args);
@@ -24,6 +19,11 @@ fn main() {
         process::exit(1);
     };
 
+}
+
+struct Config<T> where T: Iterator<Item = f64> {
+    op: String, // op = operation
+    values: T, 
 }
 
 fn set_config(mut args: Args) -> Config<impl Iterator<Item = f64>> {
