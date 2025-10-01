@@ -1,24 +1,23 @@
 use std::{env::{self, Args}, process};
-
 use command_line_calculator::{quocient, product, difference, sum};
 
 fn main() {
     let args = env::args().into_iter();
     let config= set_config(args);
 
-    if config.op == "sum" {println!("total: {}", sum(config.values))} 
-    else if config.op == "difference" {println!("total: {}", difference(config.values))} 
-    else if config.op == "product" {println!("total: {}", product(config.values))} 
-    else if config.op == "quocient" {println!("total: {}", quocient(config.values))} 
-    else {
-        println!(
-            "Invalid operation! please, type cargo run help for 
-            more information"
-        );
-
-        process::exit(1);
-    };
-
+    match config.op.as_str() {
+        "sum" => println!("total: {}", sum(config.values)),
+        "difference" => println!("total: {}", difference(config.values)),
+        "product" => println!("total: {}", product(config.values)),
+        "quocient" => println!("total: {}", quocient(config.values)),
+        _ => {
+            eprintln!(
+                "Invalid Operation: {}. \nTry: | difference | product | quocient | sum |", 
+                config.op
+            );
+            process::exit(1);
+        }
+    }
 }
 
 struct Config<T> where T: Iterator<Item = f64> {
